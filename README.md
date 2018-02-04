@@ -23,14 +23,15 @@ When recording is turned off, any gesture you make will be processed and then co
 #### **Anomalies Testing**
 Checking this will turn on an extra feature when comparing your gesture to recorded gestures that weights certain differences more than others. Specifically, anomalies testing computes a standard deviation for the difference between gestures and weights differences that deviate from the average by a number of deviations of your choice (Dev Tightness). You can also set how much to weight these differences (Anomalies Factor).
 
-*This feature adds some computation and uses more memory than the standard, but does not affect the time complexity of the script. Also, it takes effect after gestures have been reduced to a set number of points (Points Per Gesture), meaning that it is only adding a few traversals of data that is limited by you. Going through 30 to 100 points a few more times will be trivial on almost any device.*
+> *This feature adds some computation and uses more memory than the standard, but does not affect the time complexity of the script. Also, it takes effect after gestures have been reduced to a set number of points (Points Per Gesture), meaning that it is only adding a few traversals of data that is limited by you. Going through 30 to 100 points a few more times will be trivial on almost any device.*
 #### **Template Save Name**
 The name your next gesture will be recorded as, if recording is turned on.
 #### **Points Per Gesture**
 This integer value will determine how many points gestures will be reduced (or increased) to.
 
 This value has the strongest effect on performance, as the mapping of data is one of the more computationally heavy parts of the script, and it will determine how many points must be compared when checking differences to each recorded gesture. Read about performance farther down this document.
-> *Recording samples points at intervals of time, so gestures will have different amounts of recorded data depending on how long they took to make. To allow for reasonable comparison, they must be represented in a standard number of points.
+> *Recording samples points at intervals of time, so gestures will have different amounts of recorded data depending on how long they took to make. To allow for reasonable comparison, they must be represented in a standard number of points.*
+
 > *AVOID setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 an up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)*
 
 > *Recommended Range: 30 to 100*
@@ -46,10 +47,12 @@ This integer value is the number of samples that will be allowed before a gestur
 #### Standard Ratio
 This represents the size of square that gestures will be scaled to. Gestures are not stretched or squashed, they are scaled down maintaining their aspect ratio to fit inside this square. 
 > *This is necessary to allow for comparsion, by keeping the gestures at the same scale. Setting this too low has the possibility of making recognition a bit less reliable as the values being dealt with are smaller and will differ by smaller margins. Setting this too high is pointless.*
+
 > *Recommended Range: 100 to 500*
 #### Dev Tightness
 This floating point value is the amount of deviations before a difference between two gestures is weighted extra, if Anomalies Testing is turned on.
-> *There is only a small range for this value that will actually have an effect. Below 1.0, Anomalies Testing will start weighing more differences than is productive (possibly a majority of them). Above 2.0 and Anomalies Testing will likely not capture much.*
+> *There is only a small range for this value that will actually have an effect. Below 1.0, Anomalies Testing will start weighing
+
 > *Recommended Range: 1.0 to 2.0
 #### Anomalies Factor
 This floating point value is the amount that Anomalies Testing will weight differences that exceed the Dev Tightness threshold, if Anomalies Testing is turned on.
