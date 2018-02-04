@@ -73,7 +73,7 @@ As such, the growth is not bad, but is dependent on the number of samples taken,
 ### Recognition
 Points are compared between gestures and the recorded 'template gestures'. This means traversal of points will happen once for each template, as there is no way to pre order them and perform a greedy search or a dynamic programming algorithm because the difference cannot be predicted beforehand.
 
-The time complexity of this part is O(n^2), which doesn't look too great, but keep in mind that for the purpose of my game, there will not be large amounts of templates (probably no more than 10 even), and the number of points per gesture should be kept at the range recommended in the manual above (because more is actually not helpful past a certain amount). Because of all this, the runtime in the end is not bad at all, taking only a few hundredths of a second at most in my tests.
+The time complexity of this part is O(n * m), where n is the number of points per gesture and m is the number of templates, which doesn't look exceptional, but keep in mind that for the purpose of my game, there will not be large amounts of templates (probably no more than 10 even), and the number of points per gesture should be kept at the range recommended in the manual above (because more is actually not helpful past a certain amount). Because of all this, the runtime in the end is not bad at all, taking only a few hundredths of a second at most in my tests.
 ### Further Data
 I will post actual performance testing results in the future so you can see some numbers.
 
