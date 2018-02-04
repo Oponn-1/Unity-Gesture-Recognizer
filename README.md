@@ -27,11 +27,11 @@ Checking this will turn on an extra feature when comparing your gesture to recor
 #### **Template Save Name**
 This is the name the next gesture you make will be recorded as, if recording is turned on.
 #### **Points Per Gesture**
-This integer value will determine how many points gestures will be reduced (or increased) to. Recording measures points at short intervals (Sampling Rate), so the data has to be mapped onto a standard number of points to allow reasonable comparison.
+  This integer value will determine how many points gestures will be reduced (or increased) to. Recording measures points at short intervals (Sampling Rate), so the data has to be mapped onto a standard number of points to allow reasonable comparison.
 
 This value has the strongest effect on performance, as the mapping of data is one of the more computationally heavy parts of the script, and it will determine how many points must be compared when checking differences to each recorded gesture. Read about performance in the farther down this document.
 
-**Avoid setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 an up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)**
+*AVOID setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 an up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)**
 
-**Recommended Range: 30 to 100**
+*Recommended Range: 30 to 100**
 
