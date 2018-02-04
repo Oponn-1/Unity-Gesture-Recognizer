@@ -31,7 +31,7 @@ This is the name the next gesture you make will be recorded as, if recording is 
 
 This value has the strongest effect on performance, as the mapping of data is one of the more computationally heavy parts of the script, and it will determine how many points must be compared when checking differences to each recorded gesture. Read about performance in the farther down this document.
 
-*AVOID setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 an up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)**
+> *AVOID setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 an up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)**
 
-*Recommended Range: 30 to 100**
+> *Recommended Range: 30 to 100**
 
