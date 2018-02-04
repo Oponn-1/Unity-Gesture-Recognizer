@@ -58,6 +58,23 @@ This floating point value is the amount of deviations before a difference betwee
 This floating point value is the amount that Anomalies Testing will weight differences that exceed the Dev Tightness threshold, if Anomalies Testing is turned on.
 > *You can experimenet alot with this value, but keep in mind that if you set it too high, there is a chance results will be less predictable, as an actually accidental 'anomaly' (say your hand shifted suddenly when drawing a line) could cause a gesture's difference to be distorted. Of course, what you set this to should take into account the Dev Tightness you set.*
 
-### Performance
+## Performance
+There are three major parts of the script to look at for performance:
+* Sampling Data
+* Processing Into Gestures
+* Recognition
+
+### Sampling Data
+The collecting of the data as you draw is very streamlined. It inolves some conditional checks and some simple arithmetic. The location of the initial click is used as the point (0,0) from which to base each subsequent point from. The time complexity of this piece is O(1), as it does not change, and the actual performance is very quick.
+### Processing Into Gestures
+The set of points collected when drawing must be processed into a standard size and number of points to allow for comparison afterwards. This part is much more intensive than the actual sampling, as it traverses the list of points to scale them and then also to map them. The mapping requires a bit more computaiton, as there is interpolation going on, but this is still just arithemtic. The time complexity of this section is O(2n) = O(n) where n is the number of points sampled.
+
+As such, the growth is not bad, but is dependent on the number of samples taken, which can potentially increase a lot if you lower the Sampling Rate value too much. The recommended range in the manual above avoids this, and the runtime is still very fast.
+### Recognition
+Points are compared between gestures and the recorded 'template gestures'. This means traversal of points will happen once for each template, as there is no way to pre order them and perform a greedy search or a dynamic programming algorithm because the difference cannot be predicted beforehand.
+
+The time complexity of this part is O(n^2), which doesn't look too great, but keep in mind that for the purpose of my game, there will not be large amounts of templates (probably no more than 10 even), and the number of points per gesture should be kept at the range recommended in the manual above (because more is actually not helpful past a certain amount). Because of all this, the runtime in the end is not bad at all, taking only a few hundredths of a second at most in my tests.
+### Further Data
+I will post actual performance testing results in the future so you can see some numbers.
 
 
