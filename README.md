@@ -77,4 +77,7 @@ The time complexity of this part is O(n * m), where n is the number of points pe
 ### Further Data
 I will post actual performance testing results in the future so you can see some numbers.
 
-
+## Possible Additions
+[] Add a script to display gestures as they are drawn along with recorded gestures for visual feedback
+[] Add a feature to allow grouping of recorded gestures, so that recognition can be run on specific groups
+[] Add performance data to this document
