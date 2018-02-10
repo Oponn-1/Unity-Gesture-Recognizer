@@ -32,7 +32,7 @@ This integer value will determine how many points gestures will be reduced (or i
 This value has the strongest effect on performance, as the mapping of data is one of the more computationally heavy parts of the script, and it will determine how many points must be compared when checking differences to each recorded gesture. Read about performance farther down this document.
 > *Recording samples points at intervals of time, so gestures will have different amounts of recorded data depending on how long they took to make. To allow for reasonable comparison, they must be represented in a standard number of points.*
 
-> *AVOID setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 an up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)*
+> *AVOID setting this number to extremes, 100 and below is plenty to capture the data of the movement, and 30 and up is enough to avoid disruptive data loss when mapping (there is always some loss unless you managed to record less points)*
 
 > *Recommended Range: 30 to 100*
 #### Sampling Rate
@@ -51,9 +51,9 @@ This represents the size of square that gestures will be scaled to. Gestures are
 > *Recommended Range: 100 to 500*
 #### Dev Tightness
 This floating point value is the amount of deviations before a difference between two gestures is weighted extra, if Anomalies Testing is turned on.
-> *There is only a small range for this value that will actually have an effect. Below 1.0, Anomalies Testing will start weighing
+> *There is only a small range for this value that will actually have an effect. Below 1.0, Anomalies Testing will likely be weighing a majority of of points (assuming a close to normal random distribution), and above 2.0 it will barely be capturing anything.*
 
-> *Recommended Range: 1.0 to 2.0
+> *Recommended Range: 1.0 to 2.0*
 #### Anomalies Factor
 This floating point value is the amount that Anomalies Testing will weight differences that exceed the Dev Tightness threshold, if Anomalies Testing is turned on.
 > *You can experimenet alot with this value, but keep in mind that if you set it too high, there is a chance results will be less predictable, as an actually accidental 'anomaly' (say your hand shifted suddenly when drawing a line) could cause a gesture's difference to be distorted. Of course, what you set this to should take into account the Dev Tightness you set.*
