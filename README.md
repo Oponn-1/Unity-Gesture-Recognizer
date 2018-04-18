@@ -56,7 +56,7 @@ This floating point value is the amount of deviations before a difference betwee
 > *Recommended Range: 1.0 to 2.0*
 #### Anomalies Factor
 This floating point value is the amount that Anomalies Testing will weight differences that exceed the Dev Tightness threshold, if Anomalies Testing is turned on.
-> *You can experimenet alot with this value, but keep in mind that if you set it too high, there is a chance results will be less predictable, as an actually accidental 'anomaly' (say your hand shifted suddenly when drawing a line) could cause a gesture's difference to be distorted. Of course, what you set this to should take into account the Dev Tightness you set.*
+> *You can experiment alot with this value, but keep in mind that if you set it too high, there is a chance results will be less predictable, as an actually accidental 'anomaly' (say your hand shifted suddenly when drawing a line) could cause a gesture's difference to be distorted. Of course, what you set this to should take into account the Dev Tightness you set.*
 
 ## Performance
 There are three major parts of the script to look at for performance:
@@ -67,7 +67,7 @@ There are three major parts of the script to look at for performance:
 ### Sampling Data
 The collecting of the data as you draw is very streamlined. It inolves some conditional checks and some simple arithmetic. The location of the initial click is used as the point (0,0) from which to base each subsequent point from. The time complexity of this piece is O(1), as it does not change, and the actual performance is very quick.
 ### Processing Into Gestures
-The set of points collected when drawing must be processed into a standard size and number of points to allow for comparison afterwards. This part is much more intensive than the actual sampling, as it traverses the list of points to scale them and then also to map them. The mapping requires a bit more computaiton, as there is interpolation going on, but this is still just arithemtic. The time complexity of this section is O(2n) = O(n) where n is the number of points sampled.
+The set of points collected when drawing must be processed into a standard size and number of points to allow for comparison afterwards. This part is much more intensive than the actual sampling, as it traverses the list of points to scale them and then also to map them. The mapping requires a bit more computation, as there is interpolation going on, but this is still just arithmetic. The time complexity of this section is O(2n) = O(n) where n is the number of points sampled.
 
 As such, the growth is not bad, but is dependent on the number of samples taken, which can potentially increase a lot if you lower the Sampling Rate value too much. The recommended range in the manual above avoids this, and the runtime is still very fast.
 ### Recognition
