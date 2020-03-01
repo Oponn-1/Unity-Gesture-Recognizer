@@ -1,13 +1,11 @@
 # Gesture Recognition Script for Unity
 
 ## What is this exactly?
-I wrote this script for my game project, Maestro. The premise of the game, in brief, is that the player is a musical conductor liberating famous composers throughout history from their own music. As such, it involves making gestures like those a conductor would make for an orchestra. This presented one of the main technical problems for scripting the gameplay, the others being creating a custom 2D physics, scripting enemies, and potentially interpreting music files to generate the levels.
+I wrote this script for my game project, Maestro. The game involves making gestures like those a conductor would make for an orchestra. This presents one of the main technical problems for scripting the game's mechanics.
 
-The goal for this script: recognize the player's gestures.
+The goal for this script: recognize player gestures made with a mouse.
 
 The result: a script that allows for gestures to be recorded and for recognition to be performed using recorded gestures as targets. Almost everything about the recording and recognition is customizable. Read the manual below for details.
-
-To read about my thoughts and process in writing this script, read about it on my website: [Andy De La Fuente](https://andydelafuente.com/AD_Projects.html)
 
 ## Manual
 ### Importing to Your Project
