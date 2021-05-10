@@ -98,7 +98,8 @@ using System.IO;
 //
 //      Methods:    Documentation is above each significant function
 
-public class GestureRecognizer : MonoBehaviour {
+public class GestureRecognizer : MonoBehaviour
+{
 
     public bool recording = true;
     public bool anomaliesTesting = false;
@@ -124,19 +125,20 @@ public class GestureRecognizer : MonoBehaviour {
     private GestureTemplates templates;
     private float tempTime = 0f;
 
-    
+
 
 
     private void Awake()
     {
-        
+
     }
 
-    void Start () {
+    void Start()
+    {
         LoadTemplates();
         varInitialization();
     }
-    
+
     #region variable initialization and reset
     private void varInitialization()
     {
@@ -164,14 +166,15 @@ public class GestureRecognizer : MonoBehaviour {
             reducedPoints[i].SetY(0);
         }
         currentPointList.Clear();
-        currentPointList.Add(new TwoDPoint(0,0));
+        currentPointList.Add(new TwoDPoint(0, 0));
         gestureStarted = false;
         gestureComplete = false;
     }
 
     #endregion
 
-    void Update() {
+    void Update()
+    {
         tempTime += Time.deltaTime;
         if (Input.GetMouseButton(0))
         {
@@ -192,7 +195,8 @@ public class GestureRecognizer : MonoBehaviour {
                     EndGesture();
                 }
             }
-        } else
+        }
+        else
         {
             if (gestureStarted)
             {
@@ -211,6 +215,7 @@ public class GestureRecognizer : MonoBehaviour {
     //      LoadTemplates
     //      use:                called on start to read json templates
     //                          object from file if it's there
+    [ContextMenu("Save Templates")]
     private void SaveTemplates()
     {
         string filePath = Application.dataPath + "/StreamingAssets/" + gestureFileName;
@@ -300,7 +305,9 @@ public class GestureRecognizer : MonoBehaviour {
             currentGesture.SetName(templateSaveName);
             templates.templates.Add(new DrawnGesture(currentGesture.GetName(), pointsPerGesture, currentGesture.GetMaxX(), currentGesture.GetMaxY(),
                 currentGesture.GetMinX(), currentGesture.GetMinY(), currentGesture.GetPoints()));
-        } else
+            SaveTemplates();
+        }
+        else
         {
             DrawnGesture m = FindMatch(currentGesture, templates);
             Debug.Log(m.GetName());
@@ -324,7 +331,8 @@ public class GestureRecognizer : MonoBehaviour {
         if (xrange >= yrange)
         {
             scale = standardRatio / (gesture.GetMaxX() - gesture.GetMinX());
-        } else
+        }
+        else
         {
             scale = standardRatio / (gesture.GetMaxY() - gesture.GetMinY());
         }
@@ -381,7 +389,8 @@ public class GestureRecognizer : MonoBehaviour {
                     passedIdeal = (coveredDistance + thisDistance) >= idealInterval;
                 }
                 coveredDistance = thisDistance;
-            } else
+            }
+            else
             {
                 coveredDistance += thisDistance;
             }
@@ -410,7 +419,7 @@ public class GestureRecognizer : MonoBehaviour {
     {
         float minAvgDifference = float.MaxValue;
         DrawnGesture match = new DrawnGesture("no match", pointsPerGesture);
-        foreach(DrawnGesture template in templates.templates)
+        foreach (DrawnGesture template in templates.templates)
         {
             Debug.Log(template.GetName());
             float d = AverageDifference(playerGesture, template);
@@ -418,7 +427,7 @@ public class GestureRecognizer : MonoBehaviour {
             if (d < minAvgDifference)
             {
                 minAvgDifference = d;
-                match = template;               
+                match = template;
             }
         }
         return match;
@@ -436,7 +445,7 @@ public class GestureRecognizer : MonoBehaviour {
     //
     //      return:     returns float value of the average distance
     //                  between points of two parameter gestures
-    private float AverageDifference(DrawnGesture playerGesture, DrawnGesture template)  
+    private float AverageDifference(DrawnGesture playerGesture, DrawnGesture template)
     {
         int numPoints = playerGesture.GetNumPoints();
 
@@ -531,7 +540,7 @@ public class GestureRecognizer : MonoBehaviour {
     private float TotalDistance()
     {
         float totalDistance = 0;
-        for(int i = 0; i < currentPointList.Count - 1; i++)
+        for (int i = 0; i < currentPointList.Count - 1; i++)
         {
             totalDistance += PointDistance(currentPointList[i], currentPointList[i + 1]);
         }
@@ -564,6 +573,7 @@ public class GestureRecognizer : MonoBehaviour {
 [Serializable]
 public class GestureTemplates
 {
+    [SerializeField]
     public List<DrawnGesture> templates;
 
     public GestureTemplates()
@@ -602,12 +612,19 @@ public class GestureTemplates
 [Serializable]
 public class DrawnGesture
 {
+    [SerializeField]
     private TwoDPoint[] points;
+    [SerializeField]
     private string name;
+    [SerializeField]
     private float maxX;
+    [SerializeField]
     private float minX;
+    [SerializeField]
     private float maxY;
+    [SerializeField]
     private float minY;
+    [SerializeField]
     private int numPoints;
 
     public DrawnGesture(string newName, int pointsPerGesture)
@@ -645,7 +662,7 @@ public class DrawnGesture
     }
     public void SetPoints(TwoDPoint[] new_points)
     {
-        for(int i = 0; i < numPoints; i++)
+        for (int i = 0; i < numPoints; i++)
         {
             points[i] = new TwoDPoint(new_points[i].GetX(), new_points[i].GetY());
         }
@@ -712,9 +729,12 @@ public class DrawnGesture
 //      Fields:     x:  the x coordinate (relative to the first point when recorded)
 //                  y:  the y coordinate (also relative to first point)
 
+[Serializable]
 public class TwoDPoint
 {
+    [SerializeField]
     private float x;
+    [SerializeField]
     private float y;
 
     public TwoDPoint(float startx, float starty)
@@ -740,4 +760,4 @@ public class TwoDPoint
         y = new_y;
     }
 
-} 
+}
